@@ -15,7 +15,7 @@
 size_t	ft_checkformat(char c, va_list params)
 {
 	if (c == 'c')
-		return (ft_putchar(va_arg(params, char)));
+		return (ft_putchar(va_arg(params, int)));
 	if (c == 's')
 		return (ft_putstr(va_arg(params, char *)));
 	if (c == 'p')

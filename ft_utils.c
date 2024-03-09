@@ -10,20 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_header.h"
+#include "ft_printf.h"
 
-void	ft_putchar(char c)
+size_t	ft_strlen(char *str)
+{
+	size_t	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+size_t	ft_putchar(char c)
 {
 	write (1, &c, 1);
+	return (1);
 }
 
-void	ft_putstr(char *str)
+size_t	ft_putstr(char *str)
 {
+	if (!str)
+	{
+		ft_putstr ("(null)");
+		return (6);
+	}
 	write (1, str, ft_strlen(str));
+	return (ft_strlen(str));
 }
 
-void	ft_putnbr(int nb)
+size_t	ft_putnbr(int nb)
 {
+	size_t	count;
+
+	count = ft_countlen (nb);
+	if (nb == -2147483648)
+	{
+		ft_putstr ("-2147483648");
+		return (count);
+	}
 	if (nb < 0)
 	{
 		ft_putchar ('-');
@@ -36,12 +61,46 @@ void	ft_putnbr(int nb)
 	}
 	else
 		ft_putchar (nb + '0');
+	return (count);
 }
 
-int	main(void)
+void	ft_putnbrunsi(unsigned int nb)
 {
-	char	c = 'b';
+	if (nb > 9)
+	{
+		ft_putnbrunsi (nb / 10);
+		ft_putnbrunsi (nb % 10);
+	}
+	else
+		ft_putchar (nb + '0');
+}
 
-	ft_putnbr(1569);
+size_t	ft_putunsigned(unsigned int nb)
+{
+	size_t	count;
+
+	count = ft_countlen (nb);
+	if (nb < 0)
+		ft_putnbrunsi (nb + 4294967294);
+	else
+		ft_putnbrunsi (nb);
+	return (count);
+}
+
+char	*ft_strchr(char *str, char c)
+{
+	int		i;
+	char	*tmp;
+
+	i = 0;
+	while (str[i])
+	{
+		tmp = (char *)&str[i];
+		if (str[i] == c)
+			return (tmp);
+		i++;
+	}
+	if (c == '\0')
+		return ((char *)&str[i]);
 	return (0);
 }

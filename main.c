@@ -8,12 +8,13 @@ int main(void)
     int     t2;
     int     *ptr;
     char    *str = NULL;
-    
+    int	a;
     // str = NULL;
     
-    ptr = &t1;
-    t1 = printf ("%c %s %d %p %u asio soratra kely eto %X\n", 'D', str, 185, ptr, -1, 27);
-    t2 = ft_printf ("%c %s %d %p %u asio soratra kely eto %X\n", 'D', str, 185, ptr, -1, 27);
+	a = 42;
+    ptr = &a;
+    t1 = printf ("%c %s %d %p %u %% asio soratra kely eto %x %X %i\n", 'D', str, 185, ptr, -129, 27, 0, INT_MAX);
+    t2 = ft_printf ("%c %s %d %p %u %% asio soratra kely eto %x %X %i\n", 'D', str, 185, ptr, -129, 27, 0, INT_MAX);
     printf ("%d\n", t1);
     printf ("%d\n", t2);
     return 0;

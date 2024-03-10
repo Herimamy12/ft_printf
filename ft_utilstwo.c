@@ -12,16 +12,21 @@
 
 #include "ft_printf.h"
 
-size_t	ft_puthexa(unsigned long nb)
+size_t	ft_puthexa(long nb)
 {
-	char	*ch;
-	size_t	count;
+	static char	*ch;
+	size_t		count;
 
 	count = count_hexa(nb);
-	ch = (char *)malloc(sizeof(char) * 17);
+	if (nb < 0)
+		ft_puthexa (nb + 4294967296);
 	if (!ch)
-		return (0);
-	ch = "0123456789abcdef";
+	{
+		ch = (char *)malloc(sizeof(char) * 17);
+		if (!ch)
+			return (0);
+		ch = "0123456789abcdef";
+	}
 	if (nb > 15)
 	{
 		ft_puthexa (nb / 16);
@@ -32,20 +37,25 @@ size_t	ft_puthexa(unsigned long nb)
 	return (count);
 }
 
-size_t	ft_putheXa(unsigned long nb)
+size_t	ft_puthexa_two(long nb)
 {
-	char	*ch;
-	size_t	count;
+	static char	*ch;
+	size_t		count;
 
 	count = count_hexa (nb);
-	ch = (char *)malloc(sizeof(char) * 17);
+	if (nb < 0)
+		ft_puthexa_two (nb + 4294967296);
 	if (!ch)
-		return (0);
-	ch = "0123456789ABCDEF";
+	{
+		ch = (char *)malloc(sizeof(char) * 17);
+		if (!ch)
+			return (0);
+		ch = "0123456789ABCDEF";
+	}
 	if (nb > 15)
 	{
-		ft_putheXa (nb / 16);
-		ft_putheXa (nb % 16);
+		ft_puthexa_two (nb / 16);
+		ft_puthexa_two (nb % 16);
 	}
 	else
 		ft_putchar (ch[nb]);
@@ -56,6 +66,8 @@ size_t	ft_putadress(unsigned long ptr)
 {
 	size_t	count;
 
+	if (!ptr)
+		return (ft_putstr ("(nil)"));
 	count = (2 + count_hexa (ptr));
 	ft_putstr ("0x");
 	ft_puthexa (ptr);
@@ -64,7 +76,7 @@ size_t	ft_putadress(unsigned long ptr)
 
 size_t	count_hexa(long nb)
 {
-	size_t count;
+	size_t	count;
 
 	count = 0;
 	if (nb < 0)

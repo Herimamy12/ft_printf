@@ -31,10 +31,7 @@ size_t	ft_putchar(char c)
 size_t	ft_putstr(char *str)
 {
 	if (!str)
-	{
-		ft_putstr ("(null)");
-		return (6);
-	}
+		return (ft_putstr ("(null)"));
 	write (1, str, ft_strlen(str));
 	return (ft_strlen(str));
 }
@@ -73,34 +70,4 @@ void	ft_putnbrunsi(unsigned int nb)
 	}
 	else
 		ft_putchar (nb + '0');
-}
-
-size_t	ft_putunsigned(unsigned int nb)
-{
-	size_t	count;
-
-	count = ft_countlen (nb);
-	if (nb < 0)
-		ft_putnbrunsi (nb + 4294967294);
-	else
-		ft_putnbrunsi (nb);
-	return (count);
-}
-
-char	*ft_strchr(char *str, char c)
-{
-	int		i;
-	char	*tmp;
-
-	i = 0;
-	while (str[i])
-	{
-		tmp = (char *)&str[i];
-		if (str[i] == c)
-			return (tmp);
-		i++;
-	}
-	if (c == '\0')
-		return ((char *)&str[i]);
-	return (0);
 }

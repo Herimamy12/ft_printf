@@ -20,7 +20,7 @@ size_t	ft_putunsigned(int nb)
 	if (nb < 0)
 		ft_putnbrunsi (nb + 4294967296);
 	else
-	ft_putnbrunsi (nb);
+		ft_putnbrunsi (nb);
 	return (count);
 }
 

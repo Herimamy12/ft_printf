@@ -61,7 +61,7 @@ size_t	ft_putnbr(int nb)
 	return (count);
 }
 
-void	ft_putnbrunsi(unsigned int nb)
+void	ft_putnbrunsi(long nb)
 {
 	if (nb > 9)
 	{

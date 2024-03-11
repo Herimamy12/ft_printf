@@ -19,15 +19,13 @@ size_t	ft_checkformat(char c, va_list params)
 	else if (c == 's')
 		return (ft_putstr(va_arg(params, char *)));
 	else if (c == 'p')
-		return (ft_putadress(va_arg(params, long)));
+		return (ft_putadress(va_arg(params, unsigned long)));
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(params, int)));
 	else if (c == 'u')
 		return (ft_putunsigned(va_arg(params, int)));
-	else if (c == 'x')
-		return (ft_puthexa(va_arg(params, long), "0123456789abcdef"));
-	else if (c == 'X')
-		return (ft_puthexa_two(va_arg(params, long), "0123456789ABCDEF"));
+	else if (c == 'x' || c == 'X')
+		return (ft_puthexa(va_arg(params, unsigned int), c));
 	return (ft_putchar ('%'));
 }
 

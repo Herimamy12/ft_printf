@@ -14,14 +14,11 @@
 
 size_t	ft_putunsigned(int nb)
 {
-	size_t	count;
-
-	count = ft_countlenunsi (nb);
 	if (nb < 0)
 		ft_putnbrunsi (nb + 4294967296);
 	else
 		ft_putnbrunsi (nb);
-	return (count);
+	return (ft_countlenunsi (nb));
 }
 
 char	*ft_strchr(char *str, char c)
@@ -57,4 +54,17 @@ size_t	ft_countlenunsi(long nb)
 		nb /= 10;
 	}
 	return (count);
+}
+
+size_t	ft_hexadress_len(unsigned long nb)
+{
+	size_t	len;
+
+	len = 0;
+	while (nb != 0)
+	{
+		len++;
+		nb /= 16;
+	}
+	return (len);
 }

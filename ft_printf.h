@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_header.h                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nherimam <nherimam@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,11 +26,12 @@ size_t	ft_putnbr(int nb);
 void	ft_putnbrunsi(long nb);
 size_t	ft_putunsigned(int nb);
 char	*ft_strchr(char *str, char c);
-size_t	ft_puthexa(long nb, char *ch);
-size_t	ft_puthexa_two(long nb, char *ch);
-size_t	ft_putadress(long ptr);
-size_t	count_hexa(long nb);
 size_t	ft_countlen(long nb);
 size_t	ft_countlenunsi(long nb);
+size_t	ft_hex_len(unsigned int nb);
+size_t	ft_puthexa(unsigned int nb, char c);
+size_t	ft_putadress(unsigned long ptr);
+size_t	ft_puthexadress(unsigned long nb, char c);
+size_t	ft_hexadress_len(unsigned long nb);
 
 #endif

@@ -12,68 +12,72 @@
 
 #include "ft_printf.h"
 
-size_t	ft_puthexa(long nb, char *ch)
+size_t	ft_hex_len(unsigned int nb)
 {
-	size_t		count;
+	size_t	len;
 
-	count = count_hexa(nb);
-	if (nb < 0)
-		ft_puthexa ((nb + 4294967296), ch);
-	if (nb > 15)
+	len = 0;
+	while (nb != 0)
 	{
-		ft_puthexa ((nb / 16), ch);
-		ft_puthexa ((nb % 16), ch);
-	}
-	else
-		ft_putchar (ch[nb]);
-	return (count);
-}
-
-size_t	ft_puthexa_two(long nb, char *ch)
-{
-	size_t		count;
-
-	count = count_hexa (nb);
-	if (nb < 0)
-		ft_puthexa_two ((nb + 4294967296), ch);
-	if (nb > 15)
-	{
-		ft_puthexa_two ((nb / 16), ch);
-		ft_puthexa_two ((nb % 16), ch);
-	}
-	else
-		ft_putchar (ch[nb]);
-	return (count);
-}
-
-size_t	ft_putadress(long ptr)
-{
-	size_t	count;
-
-	if (!ptr)
-		return (ft_putstr ("(nil)"));
-	count = (2 + count_hexa (ptr));
-	ft_putstr ("0x");
-	ft_puthexa (ptr, "0123456789abcdef");
-	return (count);
-}
-
-size_t	count_hexa(long nb)
-{
-	size_t	count;
-
-	count = 0;
-	if (nb < 0)
-		return (8);
-	if (nb == 0)
-		return (1);
-	while (nb > 16)
-	{
-		count++;
+		len++;
 		nb /= 16;
 	}
-	count++;
-	return (count);
+	return (len);
+}
+
+size_t	ft_puthexa(unsigned int nb, char c)
+{
+	if (nb == 0)
+		return (ft_putchar ('0'));
+	if (nb > 15)
+	{
+		ft_puthexa ((nb / 16), c);
+		ft_puthexa ((nb % 16), c);
+	}
+	else
+	{
+		if (nb < 10)
+			ft_putchar (nb + '0');
+		else
+		{
+			if (c == 'x')
+				ft_putchar (nb - 10 + 'a');
+			if (c == 'X')
+				ft_putchar (nb - 10 + 'A');
+		}
+	}
+	return (ft_hex_len(nb));
+}
+
+size_t	ft_puthexadress(unsigned long nb, char c)
+{
+	if (nb == 0)
+		return (ft_putchar ('0'));
+	if (nb > 15)
+	{
+		ft_puthexadress ((nb / 16), c);
+		ft_puthexadress ((nb % 16), c);
+	}
+	else
+	{
+		if (nb < 10)
+			ft_putchar (nb + '0');
+		else
+		{
+			if (c == 'x')
+				ft_putchar (nb - 10 + 'a');
+			if (c == 'X')
+				ft_putchar (nb - 10 + 'A');
+		}
+	}
+	return (ft_hexadress_len(nb));
+}
+
+size_t	ft_putadress(unsigned long ptr)
+{
+	if (!ptr)
+		return (ft_putstr ("(nil)"));
+	return (ft_putstr ("0x") + ft_puthexadress ((ptr), 'x'));
 }
 
 size_t	ft_countlen(long nb)

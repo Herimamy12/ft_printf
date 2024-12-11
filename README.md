@@ -58,14 +58,21 @@ Pour utiliser la fonction `ft_printf`, suivez les étapes ci-dessous :
 
 Cela vous permettra d'utiliser votre version et de personnalisée de `printf` dans vos projets.
 
-## Auteurs
+## Contribution
 
-- [Herimamy12](https://github.com/Herimamy12)
+Les contributions à ce projet sont les bienvenues ! Si vous souhaitez participer, voici les étapes à suivre :
 
-## Licence
+1. Forkez ce projet.
+2. Créez une branche pour chaque fonctionnalité ou correction de bug.
+3. Assurez-vous que vos modifications ne cassent pas l'existant et que toutes les fonctionnalités sont correctement testées.
+4. Soumettez une Pull Request pour que vos modifications puissent être examinées et fusionnées.
 
-Ce projet est sous licence de l'ecole 42 Antananarivo. Pour plus d'informations, veuillez consulter le fichier [LICENSE](https://42antananarivo.mg/mentions-legales/).
+Nous vous encourageons également à ajouter des tests unitaires pour garantir la stabilité du projet et éviter toute régression.
 
 ## Remerciements
 
 Merci à l'école 42 pour cette incroyable opportunité d'apprentissage et pour le soutien de la communauté. Un grand merci également à tous ceux qui ont contribué directement ou indirectement à ce projet.
+
+#### Auteurs
+
+- [Herimamy12](https://github.com/Herimamy12)

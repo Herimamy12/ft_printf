@@ -32,7 +32,7 @@ Pour utiliser la fonction `ft_printf`, suivez les étapes ci-dessous :
 
 1. **Incluez le fichier d'en-tête dans votre code :**
     ```c
-    #include "ft_printf.h"
+    #include "../include/ft_printf.h"
     ```
 
 2. **Appelez la fonction `ft_printf` comme vous le feriez avec `printf` :**

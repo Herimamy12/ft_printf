@@ -1,30 +1,35 @@
-NAME = libftprintf.a
+NAME			=	libftprintf.a
 
-CFLAGS = -Wall -Werror -Wextra
+SRC				=	./src/ft_printf.c \
+					./src/ft_utils.c \
+					./src/ft_utilstwo.c \
+					./src/ft_utilsthree.c 
 
-SRCS = ft_printf.c \
-		ft_utils.c \
-		ft_utilstwo.c \
-		ft_utilsthree.c 
+CC				=	cc -Wall -Werror -Wextra
 
-OBJS = $(SRCS:.c=.o)
+OBJD			=	obj
 
-CC = cc
+OBJ				=	$(patsubst ./src/%.c, $(OBJD)/%.o, $(SRC))
 
-%.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+${shell mkdir -p ${OBJD}}
 
-all: $(NAME)
+$(OBJD)/%.o		:	./src/%.c
+					@$(CC) -o $@ -c $<
 
-$(NAME): $(OBJS)
-	ar rsc $@ $^
+all				:	$(NAME)
 
-clean:
-	rm -f $(OBJS)
+$(NAME)			:	$(OBJ)
+					@ar rsc $@ $^
+					@echo "Compiled with success"
 
-fclean: clean
-	rm -f $(NAME)
+clean			:
+					@rm -rf $(OBJD)
+					@echo "Clean with success"
 
-re: fclean all
+fclean			:	clean
+					@rm -f $(NAME)
+					@echo "Fclean with success"
 
-.PHONY: all clean fclean re
+re				:	fclean all
+
+.PHONY			:	all clean fclean re
